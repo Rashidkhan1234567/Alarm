@@ -52,9 +52,9 @@ function Home() {
         getMinutes < 10 ? `0${getMinutes}` : getMinutes
       } pm`;
     } else {
-      time = `${getHour} : ${
+      time = `${getHour - 12 < 10 ? `0${getHour}` : getHour} : ${
         getMinutes < 10 ? `0${getMinutes}` : getMinutes
-      } am`;
+      } pm`;
     }
     setCurrentTime(time);
   };
