@@ -54,7 +54,7 @@ function Home() {
     } else {
       time = `${getHour - 12 < 10 ? `0${getHour}` : getHour} : ${
         getMinutes < 10 ? `0${getMinutes}` : getMinutes
-      } pm`;
+      } am`;
     }
     setCurrentTime(time);
   };
