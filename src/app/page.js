@@ -169,7 +169,7 @@ function Home() {
         </div>
 
         <audio ref={alarmAudio} src={audioFile} preload="auto"></audio>
-        {AlarmAlert && (
+        {/* {AlarmAlert && (
           <div className="w-[50%] h-[60%] flex flex-col justify-center items-center bg-slate-600 absolute rounded-lg">
             <h1 className="text-4xl text-center text-black">Wake Up Dear !</h1>
             <div className="alarmGIF w-[30%] h-[40%] mb-16 ">
@@ -188,7 +188,7 @@ function Home() {
               Stop
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
