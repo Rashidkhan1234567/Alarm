@@ -6,6 +6,7 @@ import Image from "next/image";
 import img from "@/Assets/giphy.gif";
 
 function Home() {
+  const [AlarmAlert, setAlarmAlert] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
@@ -16,7 +17,6 @@ function Home() {
   const [alarmHour, setAlarmHour] = useState(0);
   const [alarmMin, setAlarmMin] = useState(0);
   const [alarmZone, setAlarmZone] = useState(0);
-  // const [AlarmAlert, setAlarmAlert] = useState(false);
 
   const alarmAudio = useRef(null);
 
@@ -33,9 +33,10 @@ function Home() {
       alarmMin === currentTime.slice(5, 7) &&
       alarmZone === currentTime.slice(8, 10)
     ) {
+      setAlarmAlert(true);
       alarmAudio.current.play();
-      // setAlarmAlert(true);
       setTimeout(() => {
+      alarmAudio.current.pause();
         setAlarmTime(" ");
         setDisable(false);
       }, 20000);
@@ -59,17 +60,17 @@ function Home() {
     setCurrentTime(time);
   };
 
-  // const handleStopAlarm = () => {
-  //   // alarmAudio.current.pause();
-  //   // setAlarmTime(" ");
-  //   // setDisable(false);
-  //   setAlarmAlert(false);
-  // };
+  const handleStopAlarm = () => {
+    // alarmAudio.current.pause();
+    // setAlarmTime(" ");
+    // setDisable(false);
+    setAlarmAlert(false);
+  };
 
   const handleSetAlarm = () => {
     if (!hour || hour < 1 || hour > 12) {
       setError("Please enter a valid hour (1-12).");
-      // return;
+      return;
     } else if (!min || min < 0 || min >= 60) {
       setError("Please enter a valid minute (0-59).");
       return;
@@ -169,7 +170,7 @@ function Home() {
         </div>
 
         <audio ref={alarmAudio} src={audioFile} preload="auto"></audio>
-        {/* {AlarmAlert && (
+        {AlarmAlert && (
           <div className="w-[50%] h-[60%] flex flex-col justify-center items-center bg-slate-600 absolute rounded-lg">
             <h1 className="text-4xl text-center text-black">Wake Up Dear !</h1>
             <div className="alarmGIF w-[30%] h-[40%] mb-16 ">
@@ -188,7 +189,7 @@ function Home() {
               Stop
             </button>
           </div>
-        )} */}
+        )}
       </div>
     </>
   );
