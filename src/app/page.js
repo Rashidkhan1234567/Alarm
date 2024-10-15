@@ -6,7 +6,6 @@ import Image from "next/image";
 import img from "@/Assets/giphy.gif";
 
 function Home() {
-  const [AlarmAlert, setAlarmAlert] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [hour, setHour] = useState("");
   const [min, setMin] = useState("");
@@ -17,6 +16,7 @@ function Home() {
   const [alarmHour, setAlarmHour] = useState(0);
   const [alarmMin, setAlarmMin] = useState(0);
   const [alarmZone, setAlarmZone] = useState(0);
+  // const [AlarmAlert, setAlarmAlert] = useState(false);
 
   const alarmAudio = useRef(null);
 
@@ -33,10 +33,9 @@ function Home() {
       alarmMin === currentTime.slice(5, 7) &&
       alarmZone === currentTime.slice(8, 10)
     ) {
-      setAlarmAlert(true);
       alarmAudio.current.play();
+      // setAlarmAlert(true);
       setTimeout(() => {
-      alarmAudio.current.p();
         setAlarmTime(" ");
         setDisable(false);
       }, 20000);
