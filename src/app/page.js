@@ -16,11 +16,14 @@ function Home() {
   const [alarmHour, setAlarmHour] = useState(0);
   const [alarmMin, setAlarmMin] = useState(0);
   const [alarmZone, setAlarmZone] = useState(0);
-  // const [AlarmAlert, setAlarmAlert] = useState(false);
+  const [AlarmAlert, setAlarmAlert] = useState(false);
 
   const alarmAudio = useRef(null);
 
   useEffect(() => {
+    if(AlarmAlert){
+      alart("time up wake up dear !")
+    }
     const interval = setInterval(() => {
       getCurrentTime();
     }, 1000);
@@ -33,8 +36,8 @@ function Home() {
       alarmMin === currentTime.slice(5, 7) &&
       alarmZone === currentTime.slice(8, 10)
     ) {
+      setAlarmAlert(true);
       alarmAudio.current.play();
-      // setAlarmAlert(true);
       setTimeout(() => {
         setAlarmTime(" ");
         setDisable(false);
@@ -95,7 +98,7 @@ function Home() {
 
   return (
     <>
-      <div className="h-screen w-screen flex justify-center items-center flex-col overflow-hidden">
+      <div className="bg-black h-screen w-screen flex justify-center items-center flex-col overflow-hidden">
         <div className="h-[65vh] w-[95%] mx-2 md:w-[35vw] px-2 flex justify-center items-center flex-col">
           <div className="currentTime mb-10">
             <h1 className="text-4xl mb-10">Current Time</h1>
